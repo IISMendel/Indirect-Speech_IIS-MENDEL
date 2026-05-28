@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direct & Indirect Speech – 5C | IIS Mendel</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080d09;
+    --surface: #101810;
+    --surface2: #141f14;
+    --border: #2a4430;
+    --gold: #f5c030;
+    --gold-light: #ffd84a;
+    --gold-dim: rgba(245,192,48,0.18);
+    --green-dark: #1a5e16;
+    --green-mid: #29a022;
+    --green-light: #5cdd4e;
+    --text: #f2efe6;
+    --text-muted: #96c498;
+    --text-dim: #587a5a;
+    --white: #ffffff;
+    --red: #ff4040;
+    --blue: #3498db;
+    --correct: #2ecc71;
+    --wrong: #ff4444;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(160deg, #071209 0%, #0c1f0d 50%, #091508 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(240,192,64,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -40px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(30,110,26,0.20) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 52px 32px 44px;
+    position: relative;
+    z-index: 1;
+  }
+  .school-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(240,192,64,0.45);
+    border-radius: 4px;
+    padding: 6px 14px;
+    margin-bottom: 24px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .school-badge::before {
+    content: '🌿';
+    font-size: 0.85rem;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 30px rgba(245,192,48,0.15);
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    margin-bottom: 28px;
+  }
+  .class-tag {
+    display: inline-block;
+    background: var(--green-dark);
+    border: 1px solid var(--green-mid);
+    color: #7effa0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 3px;
+  }
+
+  /* ── TABS ── */
+  .tab-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  .tab-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 18px 28px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.25s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    text-shadow: 0 0 16px rgba(245,192,48,0.4);
+  }
+
+  /* ── MAIN ── */
+  .main { max-width: 1100px; margin: 0 auto; padding: 48px 32px; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ── SECTION HEADERS ── */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin: 48px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(245,192,48,0.35);
+    text-shadow: 0 0 20px rgba(245,192,48,0.2);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-title:first-child { margin-top: 0; }
+  .section-letter {
+    width: 36px; height: 36px;
+    background: var(--gold);
+    color: #060e06;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .sub-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--green-light);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 0 0 14px rgba(92,221,78,0.3);
+    margin: 28px 0 12px;
+  }
+
+  /* ── RULE BOX ── */
+  .rule-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: 6px;
+    padding: 20px 24px;
+    box-shadow: -2px 0 12px rgba(245,192,48,0.12);
+    margin-bottom: 20px;
+  }
+  .rule-box p { line-height: 1.75; color: var(--text); font-size: 0.95rem; margin-bottom: 8px; }
+  .rule-box p:last-child { margin-bottom: 0; }
+
+  .note-box {
+    background: rgba(30,110,26,0.28);
+    border: 1px solid rgba(109,217,96,0.4);
+    border-left: 4px solid var(--green-light);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 0.9rem;
+    color: #7effa0;
+    line-height: 1.7;
+  }
+  .note-box strong { color: var(--green-light); }
+
+  .warning-box {
+    background: rgba(255,68,68,0.14);
+    border: 1px solid rgba(255,68,68,0.45);
+    border-left: 4px solid #e74c3c;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 0.9rem;
+    color: #ff8080;
+    line-height: 1.7;
+  }
+  .warning-box strong { color: #e74c3c; }
+
+  /* ── EXAMPLE ── */
+  .example {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+  .example .direct { color: #00ddff; }
+  .example .indirect { color: var(--gold-light); }
+  .example .arrow { color: var(--green-light); margin: 0 8px; }
+  .example .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  /* ── BACKSHIFT TABLE ── */
+  .table-wrap { overflow-x: auto; margin: 20px 0; border-radius: 8px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 500px;
+  }
+  thead th {
+    background: var(--green-dark);
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    padding: 14px 16px;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+  tbody tr { border: 1px solid var(--border); }
+  tbody tr:nth-child(even) { background: var(--surface); }
+  tbody tr:hover { background: rgba(240,192,64,0.06); }
+  td {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    vertical-align: middle;
+    line-height: 1.5;
+  }
+  td:first-child { color: #00ddff; font-family: 'DM Mono', monospace; font-size: 0.85rem; }
+  td:last-child { color: var(--gold-light); font-family: 'DM Mono', monospace; font-size: 0.85rem; }
+  .tense-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-family: 'DM Sans', sans-serif;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ── TWO COLUMN ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+  .col-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .col-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(245,192,48,0.2);
+  }
+  .col-card ul { list-style: none; }
+  .col-card li {
+    font-size: 0.87rem;
+    color: var(--text);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    gap: 10px;
+  }
+  .col-card li::before { content: '→'; color: var(--green-light); flex-shrink: 0; }
+
+  /* ── VERB TABLE ── */
+  .verb-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 0.82rem;
+    font-family: 'DM Mono', monospace;
+    color: var(--text-muted);
+  }
+  .chip.green { border-color: rgba(109,217,96,0.45); color: #7effa0; }
+  .chip.gold { border-color: rgba(240,192,64,0.5); color: var(--gold); }
+
+  /* ── EXERCISES ── */
+  .ex-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin-bottom: 32px;
+  }
+  .ex-num {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .ex-badge {
+    background: var(--gold);
+    color: #060e06;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .ex-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    font-weight: 600;
+  }
+  .ex-instruction {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  .ex-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .ex-item-num {
+    min-width: 26px;
+    height: 26px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .ex-item-body { flex: 1; }
+  .ex-sentence {
+    font-size: 0.93rem;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .ex-sentence .direct-q {
+    font-style: italic;
+    color: #00ddff;
+  }
+  .fill-input {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 7px 14px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    width: 100%;
+    max-width: 480px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .fill-input:focus { border-color: var(--gold); }
+  .fill-input.correct { border-color: var(--correct); background: rgba(46,204,113,0.12); color: #7effa0; }
+  .fill-input.wrong { border-color: var(--wrong); background: rgba(255,68,68,0.12); color: #ff8080; }
+
+  .inline-input {
+    background: rgba(0,0,0,0.3);
+    border: none;
+    border-bottom: 2px solid var(--border);
+    color: var(--gold-light);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.88rem;
+    padding: 2px 6px;
+    outline: none;
+    min-width: 120px;
+    display: inline-block;
+    transition: border-color 0.2s;
+  }
+  .inline-input:focus { border-bottom-color: var(--gold); }
+  .inline-input.correct { border-bottom-color: var(--correct); color: #7effa0; }
+  .inline-input.wrong { border-bottom-color: var(--wrong); color: #ff8080; }
+
+  .feedback {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct { color: var(--correct); }
+  .feedback.wrong { color: var(--wrong); }
+
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    background: var(--gold);
+    color: #060e06;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn:hover { background: var(--gold-light); }
+  .btn:active { transform: scale(0.97); }
+  .btn.outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .btn.outline:hover { border-color: var(--gold); color: var(--gold); background: transparent; }
+
+  .score-badge {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 9px 16px;
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+  .score-badge.show { display: flex; }
+  .score-num { font-weight: 700; font-size: 1.05rem; color: var(--gold); }
+
+  /* ── SELECT EXERCISE ── */
+  .select-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  select.fill-input {
+    appearance: none;
+    cursor: pointer;
+    padding-right: 32px;
+    width: auto;
+    min-width: 180px;
+  }
+  .select-arrow {
+    position: absolute;
+    right: 10px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    pointer-events: none;
+    font-size: 0.8rem;
+  }
+
+  /* ── DRAG & DROP ── */
+  .dnd-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+    min-height: 44px;
+    background: var(--surface2);
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    padding: 10px;
+  }
+  .dnd-token {
+    background: var(--green-dark);
+    border: 1px solid var(--green-mid);
+    color: #aaffc8;
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    font-family: 'DM Mono', monospace;
+    cursor: grab;
+    user-select: none;
+    transition: opacity 0.2s;
+  }
+  .dnd-token:active { cursor: grabbing; opacity: 0.7; }
+  .dnd-token.used { opacity: 0.3; cursor: not-allowed; }
+
+  .dnd-drop {
+    display: inline-block;
+    min-width: 100px;
+    height: 26px;
+    border-bottom: 2px dashed var(--border);
+    vertical-align: bottom;
+    margin: 0 4px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .dnd-drop.over { border-color: var(--gold); }
+  .dnd-drop span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    display: inline-block;
+    padding: 2px 6px;
+  }
+
+  /* ── MULTI CHOICE ── */
+  .mc-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .mc-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mc-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .mc-btn.selected { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+  .mc-btn.correct-mc { background: rgba(46,204,113,0.18); border-color: var(--correct); color: #7effa0; }
+  .mc-btn.wrong-mc { background: rgba(255,68,68,0.14); border-color: var(--wrong); color: #ff8080; }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 80px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 36px 32px;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .footer-left { }
+  .footer-school {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .footer-sub {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+  .footer-right {
+    text-align: right;
+  }
+  .footer-teacher {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .footer-teacher strong { color: var(--text); }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .header-inner { padding: 36px 20px 32px; }
+    .main { padding: 32px 20px; }
+    .tab-btn { padding: 14px 16px; font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header>
+  <div class="header-inner">
+    <div class="school-badge">IIS Gregorio Mendel · Villa Cortese (MI)</div>
+    <h1><em>Direct &amp; Indirect Speech</em></h1>
+    <p class="subtitle">Discorso diretto e indiretto — Grammar &amp; Practice</p>
+    <span class="class-tag">Classe 5C · A.S. 2025/26</span>
+  </div>
+</header>
+
+<!-- ══════════════ TABS ══════════════ -->
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('grammar',this)">📖 Grammar</button>
+    <button class="tab-btn" onclick="switchTab('exercises',this)">✏️ Exercises</button>
+  </div>
+</div>
+
+<!-- ══════════════ MAIN ══════════════ -->
+<div class="main">
+
+  <!-- ════════ GRAMMAR TAB ════════ -->
+  <div id="tab-grammar" class="tab-content active">
+
+    <!-- A. SAY vs TELL -->
+    <h2 class="section-title">
+      <span class="section-letter">A</span>
+      Introducing Reported Speech: <em style="font-family:'Playfair Display';color:var(--text)">say</em> vs <em style="font-family:'Playfair Display';color:var(--text)">tell</em>
+    </h2>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>SAY</h4>
+        <ul>
+          <li>Used when the person spoken <strong>to is NOT mentioned</strong></li>
+          <li>Peter <strong>said</strong>, "Clare is still sleeping."</li>
+          <li>Peter <strong>said (that)</strong> Clare was still sleeping.</li>
+          <li>If a person IS mentioned → <em>said to me</em> (with preposition)</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h4>TELL</h4>
+        <ul>
+          <li>Used when the person spoken <strong>to IS mentioned</strong></li>
+          <li>Peter <strong>told me</strong> (that) Clare was still sleeping.</li>
+          <li>NO preposition between <em>tell</em> and the person</li>
+          <li>With imperatives: <em>tell + person + to</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>📌 Note:</strong> The conjunction <em>that</em> introducing the reported clause is optional and is often omitted in informal English. "He said <em>(that)</em> he was tired." is equally correct with or without <em>that</em>.
+    </div>
+
+    <div class="note-box">
+      <strong>Other reporting verbs</strong> (backshift applies the same way): <em>add, announce, assure, complain, confess, confirm, exclaim, explain, inform, promise, report, think</em>
+    </div>
+
+    <!-- B. BACKSHIFT -->
+    <h2 class="section-title">
+      <span class="section-letter">B</span>
+      Reporting Statements — Tense Backshift
+    </h2>
+
+    <div class="rule-box">
+      <p>When the reporting verb is in the <strong>past</strong>, the verb in the reported clause moves <strong>one step back</strong> into the past.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Direct Speech</th>
+            <th>Tense</th>
+            <th>Indirect Speech</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>"He <strong>is</strong> hungry."</td>
+            <td><span class="tense-label">Present Simple</span></td>
+            <td>She said he <strong>was</strong> hungry.</td>
+          </tr>
+          <tr>
+            <td>"Bill <strong>is sleeping</strong>."</td>
+            <td><span class="tense-label">Present Continuous</span></td>
+            <td>She said Bill <strong>was sleeping</strong>.</td>
+          </tr>
+          <tr>
+            <td>"I <strong>met</strong> him yesterday."</td>
+            <td><span class="tense-label">Past Simple</span></td>
+            <td>She said she <strong>had met</strong> him the day before.</td>
+          </tr>
+          <tr>
+            <td>"I <strong>was reading</strong>."</td>
+            <td><span class="tense-label">Past Continuous</span></td>
+            <td>She said she <strong>had been reading</strong>.</td>
+          </tr>
+          <tr>
+            <td>"She <strong>has received</strong> his letter."</td>
+            <td><span class="tense-label">Present Perfect</span></td>
+            <td>She said she <strong>had received</strong> his letter.</td>
+          </tr>
+          <tr>
+            <td>"I <strong>had been working</strong> all day."</td>
+            <td><span class="tense-label">Past Perfect</span></td>
+            <td>She said she <strong>had been working</strong> all day. <span class="tense-label">✓ no change</span></td>
+          </tr>
+          <tr>
+            <td>"I <strong>will see</strong> him tomorrow."</td>
+            <td><span class="tense-label">Future (will)</span></td>
+            <td>She said she <strong>would see</strong> him the following day.</td>
+          </tr>
+          <tr>
+            <td>"We <strong>are going to</strong> rain again."</td>
+            <td><span class="tense-label">Going to</span></td>
+            <td>She said it <strong>was going to</strong> rain again.</td>
+          </tr>
+          <tr>
+            <td>"He <strong>would see</strong> her."</td>
+            <td><span class="tense-label">Present Conditional</span></td>
+            <td>He said he <strong>would see</strong> her. <span class="tense-label">✓ no change</span></td>
+          </tr>
+          <tr>
+            <td>"He <strong>would have been</strong> driving to Liverpool."</td>
+            <td><span class="tense-label">Past Conditional</span></td>
+            <td>He said he <strong>would have been</strong> driving to Liverpool. <span class="tense-label">✓ no change</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="sub-title">🗂 Changes in pronouns, time & place expressions</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>Pronouns</h4>
+        <ul>
+          <li>I, me → he / she, him / her</li>
+          <li>we, us → they, them</li>
+          <li>my, mine → his/her, his/hers</li>
+          <li>myself → himself / herself</li>
+          <li>this, these → that, those</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h4>Time &amp; Place</h4>
+        <ul>
+          <li>now → then / at that moment</li>
+          <li>today → that day</li>
+          <li>tomorrow → the following day</li>
+          <li>yesterday → the previous day</li>
+          <li>ago → before</li>
+          <li>next week/year → the following week/year</li>
+          <li>last week/year → the previous week/year</li>
+          <li>here → there</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>⚠️ Timeless truths</strong> — the tense remains <strong>unchanged</strong> if the statement is always true: "Water <em>begins</em> to freeze at 0°C." → The teacher said that water <em>begins</em> to freeze at 0°C.
+    </div>
+
+    <div class="note-box">
+      <strong>Future in the Past</strong> — when the original sentence already used would/was going to, it stays: "I'll help you." → He said he <strong>would help</strong> me. / "I'm leaving tomorrow." → He said he <strong>was leaving</strong> the following day.
+    </div>
+
+    <!-- C. QUESTIONS -->
+    <h2 class="section-title">
+      <span class="section-letter">C</span>
+      Reporting Questions
+    </h2>
+
+    <div class="rule-box">
+      <p>In reported questions <strong>the auxiliary do/does/did is dropped</strong> and the word order becomes <strong>affirmative</strong> (subject before verb). No question mark.</p>
+    </div>
+
+    <p class="sub-title">Yes / No Questions → if / whether</p>
+    <div class="example">
+      <span class="label">Direct</span>
+      <span class="direct">"Are you tired?"</span><span class="arrow">→</span>
+      <span class="indirect">He asked (me) <u>if/whether</u> I <u>was</u> tired.</span>
+    </div>
+    <div class="example">
+      <span class="label">Direct</span>
+      <span class="direct">"Do you live here?"</span><span class="arrow">→</span>
+      <span class="indirect">He asked (me) <u>if/whether</u> I <u>lived</u> there.</span>
+    </div>
+
+    <p class="sub-title">Wh- Questions → keep the question word</p>
+    <div class="example">
+      <span class="label">Direct</span>
+      <span class="direct">"Where do you live?"</span><span class="arrow">→</span>
+      <span class="indirect">He asked (me) <u>where</u> I <u>lived</u>.</span>
+    </div>
+    <div class="example">
+      <span class="label">Direct</span>
+      <span class="direct">"What time did they leave?"</span><span class="arrow">→</span>
+      <span class="indirect">He asked me <u>what time</u> they <u>had left</u>.</span>
+    </div>
+
+    <p class="sub-title">Reporting Answers (Short Answers)</p>
+    <div class="example">
+      <span class="label">Direct</span>
+      <span class="direct">"Is she sleeping?" — "Yes, she is."</span>
+      <span class="arrow" style="display:block;margin:4px 0 4px 0">→</span>
+      <span class="indirect">He asked if she was sleeping <strong>and I answered she was</strong>.</span>
+    </div>
+
+    <!-- D. REQUESTS ORDERS -->
+    <h2 class="section-title">
+      <span class="section-letter">D</span>
+      Reporting Requests, Orders &amp; Suggestions
+    </h2>
+
+    <p class="sub-title">Requests — ask / beg / request</p>
+    <div class="rule-box">
+      <p><strong>ask / beg / request</strong> + person + <strong>(not) to</strong> + infinitive</p>
+    </div>
+    <div class="example">
+      <span class="direct">"Can you lend me your dictionary?"</span><span class="arrow">→</span>
+      <span class="indirect">He asked me <strong>to lend</strong> him his dictionary.</span>
+      <br><span class="direct">"Please don't hurt me!"</span><span class="arrow">→</span>
+      <span class="indirect">She begged (me) <strong>not to hurt</strong> her.</span>
+    </div>
+
+    <p class="sub-title">Orders &amp; Instructions — tell / command / instruct / forbid / warn</p>
+    <div class="rule-box">
+      <p><strong>tell / command / instruct / forbid / warn</strong> + person + <strong>(not) to</strong> + infinitive</p>
+    </div>
+    <div class="example">
+      <span class="direct">"Don't go near the river bank."</span><span class="arrow">→</span>
+      <span class="indirect">Mrs Grey warned her children <strong>not to go</strong> near the river bank.</span>
+    </div>
+
+    <p class="sub-title">Suggestions — suggest / recommend / advise</p>
+    <div class="rule-box">
+      <p><strong>suggest / recommend</strong> can take three constructions:</p>
+      <p>1. <strong>suggest + -ing</strong> → He suggested going to the pub.</p>
+      <p>2. <strong>suggest + (that) + should</strong> → He suggested (that) I should see a doctor.</p>
+      <p>3. <strong>suggest + (that) + frase</strong> → He recommended (that) I should see that film.</p>
+      <p style="margin-top:10px"><strong>advise (when person NOT expressed):</strong> advise + -ing → The travel agent advised going somewhere else.</p>
+      <p><strong>advise (when person IS expressed):</strong> advise + person + infinitive → The travel agent advised us to go somewhere else.</p>
+    </div>
+
+    <p class="sub-title">Other Reporting Verbs</p>
+    <div class="two-col">
+      <div class="col-card">
+        <h4>Verb + to-infinitive</h4>
+        <ul>
+          <li>offer, promise, refuse</li>
+          <li>remind, threaten</li>
+          <li>agree, decide, invite</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h4>Verb + -ing form</h4>
+        <ul>
+          <li>accuse of, admit (to)</li>
+          <li>apologise for, complain about</li>
+          <li>deny, insist on, object to</li>
+          <li>regret, thank for</li>
+        </ul>
+      </div>
+    </div>
+    <div class="example">
+      <span class="direct">"I'm sorry I kept you waiting."</span><span class="arrow">→</span>
+      <span class="indirect">He <strong>apologised for keeping</strong> me waiting.</span>
+    </div>
+
+    <!-- E. MODALS -->
+    <h2 class="section-title">
+      <span class="section-letter">E</span>
+      Modals in Indirect Speech
+    </h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Direct Speech</th>
+            <th>Indirect Speech</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>can</td>
+            <td>could</td>
+            <td style="color:var(--text-muted);font-size:0.82rem">backshifts</td>
+          </tr>
+          <tr>
+            <td>may</td>
+            <td>might</td>
+            <td style="color:var(--text-muted);font-size:0.82rem">backshifts</td>
+          </tr>
+          <tr>
+            <td>shall</td>
+            <td>should</td>
+            <td style="color:var(--text-muted);font-size:0.82rem">backshifts</td>
+          </tr>
+          <tr>
+            <td>must</td>
+            <td>had to</td>
+            <td style="color:var(--text-muted);font-size:0.82rem">backshifts</td>
+          </tr>
+          <tr>
+            <td>could, might, should, would, ought to, needn't</td>
+            <td>unchanged</td>
+            <td style="color:var(--green-light);font-size:0.82rem">✓ invariant</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="example">
+      <span class="direct">"I <strong>can</strong> play the piano."</span><span class="arrow">→</span>
+      <span class="indirect">He said he <strong>could</strong> play the piano.</span><br>
+      <span class="direct">"You <strong>must</strong> repair my car."</span><span class="arrow">→</span>
+      <span class="indirect">He said he <strong>had to</strong> repair his car.</span><br>
+      <span class="direct">"You <strong>should</strong> keep off the grass."</span><span class="arrow">→</span>
+      <span class="indirect">They said we <strong>should</strong> keep off the grass. (unchanged)</span>
+    </div>
+
+    <!-- F. CONDITIONALS -->
+    <h2 class="section-title">
+      <span class="section-letter">F</span>
+      Conditional Sentences, <em style="font-family:'Playfair Display'">had better</em>, <em style="font-family:'Playfair Display'">would rather</em>, <em style="font-family:'Playfair Display'">wish</em>
+    </h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Direct Speech</th>
+            <th>Indirect Speech</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--text-muted);font-size:0.82rem">Type 0</td>
+            <td>"If you <strong>push</strong> this button, it <strong>starts</strong>."</td>
+            <td>She said that if you <strong>push</strong> this button, it <strong>starts</strong>. (unchanged)</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-muted);font-size:0.82rem">Type 1</td>
+            <td>"If she <strong>phones</strong>, I <strong>will be</strong> happy."</td>
+            <td>She said that if she <strong>phoned</strong>, he <strong>would be</strong> happy.</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-muted);font-size:0.82rem">Type 2</td>
+            <td>"If she <strong>phoned</strong>, I <strong>would be</strong> happy."</td>
+            <td>He said that if she <strong>phoned</strong>, he <strong>would be</strong> happy. (unchanged)</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-muted);font-size:0.82rem">Type 3</td>
+            <td>"If she <strong>had phoned</strong>, I <strong>would have been</strong> happy."</td>
+            <td>He said that if she <strong>had phoned</strong>, he <strong>would have been</strong> happy. (unchanged)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule-box">
+      <p><strong>had better / would rather</strong> → remain <strong>invariant</strong> in indirect speech.</p>
+      <p style="margin-top:8px">"You'd better stay at home." → He said I'd better stay at home.</p>
+      <p>"I'd rather wake up early." → He said he'd rather wake up early.</p>
+    </div>
+
+    <div class="rule-box">
+      <p><strong>wish</strong> → past simple and past perfect stay unchanged.</p>
+      <p style="margin-top:8px">"I wish I <strong>were</strong> rich." → He said he wished he <strong>were</strong> rich.</p>
+      <p>"I wish I <strong>had seen</strong> her." → He said he wished he <strong>had seen</strong> her.</p>
+    </div>
+
+  </div><!-- /grammar tab -->
+
+
+  <!-- ════════ EXERCISES TAB ════════ -->
+  <div id="tab-exercises" class="tab-content">
+
+    <!-- EX 1 — SAY vs TELL -->
+    <div class="ex-card">
+      <div class="ex-num">
+        <span class="ex-badge">Exercise 1</span>
+        <span class="ex-title">Say or Tell?</span>
+      </div>
+      <p class="ex-instruction">Choose the correct verb. Then check your answers.</p>
+
+      <div id="ex1-items">
+        <div class="ex-item">
+          <div class="ex-item-num">1</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence">She _____ me that she was tired.</p>
+            <div class="select-wrap">
+              <select class="fill-input" data-answer="told" onchange="checkSelect(this)">
+                <option value="">-- choose --</option>
+                <option>said</option><option>told</option>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">2</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence">He _____ that he would be late.</p>
+            <div class="select-wrap">
+              <select class="fill-input" data-answer="said" onchange="checkSelect(this)">
+                <option value="">-- choose --</option>
+                <option>said</option><option>told</option>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">3</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence">They _____ us to wait outside.</p>
+            <div class="select-wrap">
+              <select class="fill-input" data-answer="told" onchange="checkSelect(this)">
+                <option value="">-- choose --</option>
+                <option>said</option><option>told</option>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">4</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence">Mark _____ goodbye and left.</p>
+            <div class="select-wrap">
+              <select class="fill-input" data-answer="said" onchange="checkSelect(this)">
+                <option value="">-- choose --</option>
+                <option>said</option><option>told</option>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">5</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence">Can you _____ me the truth?</p>
+            <div class="select-wrap">
+              <select class="fill-input" data-answer="tell" onchange="checkSelect(this)">
+                <option value="">-- choose --</option>
+                <option>say</option><option>tell</option>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">6</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence">She _____ to me that she had passed the exam.</p>
+            <div class="select-wrap">
+              <select class="fill-input" data-answer="said" onchange="checkSelect(this)">
+                <option value="">-- choose --</option>
+                <option>said</option><option>told</option>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EX 2 — TENSE BACKSHIFT -->
+    <div class="ex-card">
+      <div class="ex-num">
+        <span class="ex-badge">Exercise 2</span>
+        <span class="ex-title">Tense Backshift — Rewrite in Indirect Speech</span>
+      </div>
+      <p class="ex-instruction">Report each sentence using <em>He said (that)…</em> Make all necessary changes to verbs, pronouns, and time expressions.</p>
+
+      <div id="ex2-items">
+        <div class="ex-item">
+          <div class="ex-item-num">1</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I work in a bank."</p>
+            <input class="fill-input" type="text" placeholder="He said (that) …" data-answer="he said that he worked in a bank|he said he worked in a bank">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">2</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I live in the country."</p>
+            <input class="fill-input" type="text" placeholder="He said (that) …" data-answer="he said that he lived in the country|he said he lived in the country">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">3</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I don't like living in big cities."</p>
+            <input class="fill-input" type="text" placeholder="He said (that) …" data-answer="he said that he didn't like living in big cities|he said he didn't like living in big cities">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">4</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I haven't seen Bill for a long time."</p>
+            <input class="fill-input" type="text" placeholder="He said (that) …" data-answer="he said that he hadn't seen bill for a long time|he said he hadn't seen bill for a long time">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">5</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"My sister has just had a baby."</p>
+            <input class="fill-input" type="text" placeholder="He said (that) …" data-answer="he said that his sister had just had a baby|he said his sister had just had a baby">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">6</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I'm attending a guitar course."</p>
+            <input class="fill-input" type="text" placeholder="He said (that) …" data-answer="he said that he was attending a guitar course|he said he was attending a guitar course">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">7</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I'm going to the USA for work next week."</p>
+            <input class="fill-input" type="text" placeholder="He said (that) …" data-answer="he said that he was going to the usa for work the following week|he said he was going to the usa for work the following week">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">8</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I'll send you a postcard."</p>
+            <input class="fill-input" type="text" placeholder="He said (that) …" data-answer="he said that he would send me a postcard|he said he would send me a postcard">
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="checkFreeInput('ex2-items')">Check Answers</button>
+        <button class="btn outline" onclick="resetEx('ex2-items')">Reset</button>
+        <div class="score-badge" id="score-ex2-items"></div>
+      </div>
+    </div>
+
+    <!-- EX 3 — REPORTED QUESTIONS -->
+    <div class="ex-card">
+      <div class="ex-num">
+        <span class="ex-badge">Exercise 3</span>
+        <span class="ex-title">Reported Questions</span>
+      </div>
+      <p class="ex-instruction">Transform the direct questions into reported questions. Use <em>He asked me…</em></p>
+
+      <div id="ex3-items">
+        <div class="ex-item">
+          <div class="ex-item-num">1</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Are you still studying?"</p>
+            <input class="fill-input" type="text" placeholder="He asked me …" data-answer="he asked me if i was still studying|he asked me whether i was still studying">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">2</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Do you work in London?"</p>
+            <input class="fill-input" type="text" placeholder="He asked me …" data-answer="he asked me if i worked in london|he asked me whether i worked in london">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">3</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Did you see Ken yesterday?"</p>
+            <input class="fill-input" type="text" placeholder="He asked me …" data-answer="he asked me if i had seen ken the previous day|he asked me whether i had seen ken the day before|he asked me if i had seen ken the day before">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">4</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Will we visit the museum tomorrow?"</p>
+            <input class="fill-input" type="text" placeholder="He asked me …" data-answer="he asked me if we would visit the museum the following day|he asked me whether we would visit the museum the following day">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">5</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Where do you live?"</p>
+            <input class="fill-input" type="text" placeholder="He asked me …" data-answer="he asked me where i lived">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">6</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"What time did they leave?"</p>
+            <input class="fill-input" type="text" placeholder="He asked me …" data-answer="he asked me what time they had left">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">7</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"How long have you been waiting?"</p>
+            <input class="fill-input" type="text" placeholder="He asked me …" data-answer="he asked me how long i had been waiting">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">8</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Have you ever been to Africa?"</p>
+            <input class="fill-input" type="text" placeholder="He asked me …" data-answer="he asked me if i had ever been to africa|he asked me whether i had ever been to africa">
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="checkFreeInput('ex3-items')">Check Answers</button>
+        <button class="btn outline" onclick="resetEx('ex3-items')">Reset</button>
+        <div class="score-badge" id="score-ex3-items"></div>
+      </div>
+    </div>
+
+    <!-- EX 4 — MODALS MCQ -->
+    <div class="ex-card">
+      <div class="ex-num">
+        <span class="ex-badge">Exercise 4</span>
+        <span class="ex-title">Modals in Indirect Speech — Multiple Choice</span>
+      </div>
+      <p class="ex-instruction">Choose the correct modal for the reported speech version.</p>
+
+      <div id="ex4-items">
+        <!-- item 1 -->
+        <div class="ex-item">
+          <div class="ex-item-num">1</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I <strong>can</strong> swim very well."</p>
+            <p class="ex-sentence">She said she _____ swim very well.</p>
+            <div class="mc-options" data-answer="could">
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">could</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">can</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">might</button>
+            </div>
+          </div>
+        </div>
+        <!-- item 2 -->
+        <div class="ex-item">
+          <div class="ex-item-num">2</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"You <strong>must</strong> respect the Highway Code."</p>
+            <p class="ex-sentence">The policeman told us we _____ respect the Highway Code.</p>
+            <div class="mc-options" data-answer="had to">
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">must</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">had to</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">should</button>
+            </div>
+          </div>
+        </div>
+        <!-- item 3 -->
+        <div class="ex-item">
+          <div class="ex-item-num">3</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I <strong>may</strong> come home late."</p>
+            <p class="ex-sentence">She said she _____ come home late.</p>
+            <div class="mc-options" data-answer="might">
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">may</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">might</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">could</button>
+            </div>
+          </div>
+        </div>
+        <!-- item 4 -->
+        <div class="ex-item">
+          <div class="ex-item-num">4</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"You <strong>should</strong> go to bed early."</p>
+            <p class="ex-sentence">The doctor told me I _____ go to bed early.</p>
+            <div class="mc-options" data-answer="should">
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">must</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">had to</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">should</button>
+            </div>
+          </div>
+        </div>
+        <!-- item 5 -->
+        <div class="ex-item">
+          <div class="ex-item-num">5</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Shall we go for a walk?"</p>
+            <p class="ex-sentence">She asked if we _____ go for a walk.</p>
+            <div class="mc-options" data-answer="should">
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">shall</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">should</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">would</button>
+            </div>
+          </div>
+        </div>
+        <!-- item 6 -->
+        <div class="ex-item">
+          <div class="ex-item-num">6</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I <strong>would</strong> help you if I could."</p>
+            <p class="ex-sentence">He said he _____ help me if he could.</p>
+            <div class="mc-options" data-answer="would">
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">would</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">could</button>
+              <button class="mc-btn" onclick="pickMC(this,'ex4')">should</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="checkAllMC('ex4-items')">Check All</button>
+        <button class="btn outline" onclick="resetMC('ex4-items')">Reset</button>
+        <div class="score-badge" id="score-ex4-items"></div>
+      </div>
+    </div>
+
+    <!-- EX 5 — REPORTING VERBS -->
+    <div class="ex-card">
+      <div class="ex-num">
+        <span class="ex-badge">Exercise 5</span>
+        <span class="ex-title">Requests, Orders &amp; Suggestions</span>
+      </div>
+      <p class="ex-instruction">Report each sentence using the verb in brackets. Make all necessary changes.</p>
+
+      <div id="ex5-items">
+        <div class="ex-item">
+          <div class="ex-item-num">1</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Don't feed the animals." (tell)</p>
+            <input class="fill-input" type="text" placeholder="The tourist guide …" data-answer="the tourist guide told us not to feed the animals|the guide told us not to feed the animals">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">2</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Move two steps forward." (order)</p>
+            <input class="fill-input" type="text" placeholder="The army officer …" data-answer="the army officer ordered us to move two steps forward|the officer ordered the soldiers to move two steps forward">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">3</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Stop speaking in class!" (tell)</p>
+            <input class="fill-input" type="text" placeholder="The teacher …" data-answer="the teacher told us to stop speaking in class">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">4</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Would you like to go for a walk?" (invite)</p>
+            <input class="fill-input" type="text" placeholder="She …" data-answer="she invited me to go for a walk">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">5</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I'm sorry I broke the vase." (apologise for)</p>
+            <input class="fill-input" type="text" placeholder="She …" data-answer="she apologised for breaking the vase">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">6</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Yes, I robbed the bank." (admit)</p>
+            <input class="fill-input" type="text" placeholder="He …" data-answer="he admitted robbing the bank|he admitted to robbing the bank">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">7</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Let's go to the cinema tonight." (suggest)</p>
+            <input class="fill-input" type="text" placeholder="He …" data-answer="he suggested going to the cinema that night|he suggested going to the cinema tonight|he suggested that we should go to the cinema that night">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">8</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"No, I didn't tell a lie." (deny)</p>
+            <input class="fill-input" type="text" placeholder="He …" data-answer="he denied telling a lie|he denied having told a lie">
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="checkFreeInput('ex5-items')">Check Answers</button>
+        <button class="btn outline" onclick="resetEx('ex5-items')">Reset</button>
+        <div class="score-badge" id="score-ex5-items"></div>
+      </div>
+    </div>
+
+    <!-- EX 6 — CONDITIONALS & WISH -->
+    <div class="ex-card">
+      <div class="ex-num">
+        <span class="ex-badge">Exercise 6</span>
+        <span class="ex-title">Conditionals, wish &amp; had better</span>
+      </div>
+      <p class="ex-instruction">Report the sentences. Use the verb in brackets as the reporting verb.</p>
+
+      <div id="ex6-items">
+        <div class="ex-item">
+          <div class="ex-item-num">1</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"You'd better not go out for a few days." (say)</p>
+            <input class="fill-input" type="text" placeholder="The doctor said …" data-answer="the doctor said i'd better not go out for a few days|the doctor said that i had better not go out for a few days">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">2</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"If I study harder, I will do better." (say)</p>
+            <input class="fill-input" type="text" placeholder="She said …" data-answer="she said that if she studied harder she would do better|she said if she studied harder she would do better">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">3</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I wish I were taller." (say)</p>
+            <input class="fill-input" type="text" placeholder="She said …" data-answer="she said she wished she were taller|she said that she wished she were taller">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">4</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"Ken hadn't bought a second-hand scooter." (say / wish)</p>
+            <input class="fill-input" type="text" placeholder="Ken said …" data-answer="ken said he wished he hadn't bought a second-hand scooter|ken said that he wished he hadn't bought a second-hand scooter">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">5</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"If she had phoned, I would have been happy." (say)</p>
+            <input class="fill-input" type="text" placeholder="He said …" data-answer="he said that if she had phoned he would have been happy|he said if she had phoned he would have been happy">
+          </div>
+        </div>
+        <div class="ex-item">
+          <div class="ex-item-num">6</div>
+          <div class="ex-item-body">
+            <p class="ex-sentence direct-q">"I'd rather play video games than go out." (say)</p>
+            <input class="fill-input" type="text" placeholder="He said …" data-answer="he said he'd rather play video games than go out|he said that he'd rather play video games than go out|he said he would rather play video games than go out">
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="checkFreeInput('ex6-items')">Check Answers</button>
+        <button class="btn outline" onclick="resetEx('ex6-items')">Reset</button>
+        <div class="score-badge" id="score-ex6-items"></div>
+      </div>
+    </div>
+
+  </div><!-- /exercises tab -->
+
+</div><!-- /main -->
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-school">IIS Gregorio Mendel</div>
+      <div class="footer-sub">Via Ferrazzi 15, 20035 · Villa Cortese (MI) · agrariomendel.edu.it</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-teacher">Materiale a cura di <strong>Prof. Massimiliano Crespi</strong></div>
+      <div class="footer-copy">Classe 5C · Inglese · A.S. 2025/26</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── TAB SWITCHING ──
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── CHECK SELECT (say/tell) ──
+function checkSelect(sel) {
+  const ans = sel.dataset.answer.toLowerCase();
+  const val = sel.value.toLowerCase();
+  if (!val) return;
+  if (val === ans) {
+    sel.classList.remove('wrong'); sel.classList.add('correct');
+  } else {
+    sel.classList.remove('correct'); sel.classList.add('wrong');
+  }
+}
+
+// ── CHECK FREE INPUT ──
+function checkFreeInput(containerId) {
+  const container = document.getElementById(containerId);
+  const inputs = container.querySelectorAll('input[data-answer]');
+  let correct = 0;
+  inputs.forEach(inp => {
+    const raw = inp.dataset.answer;
+    const answers = raw.split('|').map(a => a.trim().toLowerCase().replace(/[.!?]+$/,'').replace(/\s+/g,' '));
+    const val = inp.value.trim().toLowerCase().replace(/[.!?]+$/,'').replace(/\s+/g,' ');
+    if (!val) { inp.classList.remove('correct','wrong'); return; }
+    if (answers.some(a => a === val)) {
+      inp.classList.remove('wrong'); inp.classList.add('correct'); correct++;
+    } else {
+      inp.classList.remove('correct'); inp.classList.add('wrong');
+    }
+  });
+  const scoreEl = document.getElementById('score-' + containerId);
+  if (scoreEl) {
+    scoreEl.classList.add('show');
+    const total = inputs.length;
+    const pct = Math.round(correct/total*100);
+    const emoji = pct===100?'🎉':pct>=60?'👍':'💪';
+    scoreEl.innerHTML = `<span class="score-num">${correct}/${total}</span> correct &nbsp;${emoji}`;
+  }
+}
+
+// ── RESET ──
+function resetEx(containerId) {
+  const container = document.getElementById(containerId);
+  container.querySelectorAll('input[data-answer]').forEach(inp => {
+    inp.value = '';
+    inp.classList.remove('correct','wrong');
+  });
+  const scoreEl = document.getElementById('score-' + containerId);
+  if (scoreEl) scoreEl.classList.remove('show');
+}
+
+// ── MULTIPLE CHOICE ──
+function pickMC(btn, group) {
+  const optionGroup = btn.closest('.mc-options');
+  optionGroup.querySelectorAll('.mc-btn').forEach(b => {
+    b.classList.remove('selected','correct-mc','wrong-mc');
+  });
+  btn.classList.add('selected');
+}
+
+function checkAllMC(containerId) {
+  const container = document.getElementById(containerId);
+  let correct = 0; let total = 0;
+  container.querySelectorAll('.mc-options').forEach(optGrp => {
+    const ans = optGrp.dataset.answer.toLowerCase();
+    const selected = optGrp.querySelector('.mc-btn.selected');
+    if (!selected) return;
+    total++;
+    const val = selected.textContent.trim().toLowerCase();
+    if (val === ans) {
+      selected.classList.remove('selected'); selected.classList.add('correct-mc'); correct++;
+    } else {
+      selected.classList.remove('selected'); selected.classList.add('wrong-mc');
+      // highlight correct
+      optGrp.querySelectorAll('.mc-btn').forEach(b => {
+        if (b.textContent.trim().toLowerCase() === ans) b.classList.add('correct-mc');
+      });
+    }
+  });
+  const scoreEl = document.getElementById('score-' + containerId);
+  if (scoreEl) {
+    scoreEl.classList.add('show');
+    const pct = total ? Math.round(correct/total*100) : 0;
+    const emoji = pct===100?'🎉':pct>=60?'👍':'💪';
+    scoreEl.innerHTML = `<span class="score-num">${correct}/${total}</span> correct &nbsp;${emoji}`;
+  }
+}
+
+function resetMC(containerId) {
+  const container = document.getElementById(containerId);
+  container.querySelectorAll('.mc-btn').forEach(b => {
+    b.classList.remove('selected','correct-mc','wrong-mc');
+  });
+  const scoreEl = document.getElementById('score-' + containerId);
+  if (scoreEl) scoreEl.classList.remove('show');
+}
+</script>
+</body>
+</html>
