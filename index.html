@@ -354,7 +354,7 @@
     <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
         <div>
             <h3 class="text-2xl font-bold text-mendel-900 mb-1">Practice Exercises</h3>
-            <p class="text-slate-600 text-sm">12 esercizi — dal livello B1+ al B2. Clicca <strong>Check</strong> per ogni esercizio oppure usa <strong>Check All</strong> in fondo.</p>
+            <p class="text-slate-600 text-sm">14 esercizi — dal livello B1+ al B2. Clicca <strong>Check</strong> per ogni esercizio oppure usa <strong>Check All</strong> in fondo.</p>
         </div>
         <div id="score-badge" class="bg-white border-2 border-mendel-700 rounded-xl px-5 py-2 text-center min-w-[110px]">
             <div class="text-xs uppercase tracking-wide text-mendel-700 font-semibold">Score</div>
@@ -438,6 +438,7 @@
             <button onclick="checkEx('ex1','select')" class="btn-check">
                 <i data-lucide="check-circle" class="w-4 h-4"></i> Check
             </button>
+            <button onclick="showSol('ex1','select')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex1','select')" class="btn-reset">
                 <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset
             </button>
@@ -506,6 +507,7 @@
         </div>
         <div class="mt-4 flex gap-3 flex-wrap">
             <button onclick="checkEx('ex2','input')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex2','input')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex2','input')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
     </div>
@@ -593,6 +595,7 @@
         </div>
         <div class="mt-4 flex gap-3 flex-wrap">
             <button onclick="checkEx('ex3','input')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex3','input')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex3','input')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
     </div>
@@ -662,6 +665,7 @@
         </div>
         <div class="mt-4 flex gap-3 flex-wrap">
             <button onclick="checkEx('ex4','input')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex4','input')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex4','input')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
     </div>
@@ -731,6 +735,7 @@
         </div>
         <div class="mt-4 flex gap-3 flex-wrap">
             <button onclick="checkEx('ex5','input')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex5','input')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex5','input')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
     </div>
@@ -822,6 +827,7 @@
         </div>
         <div class="mt-4 flex gap-3 flex-wrap">
             <button onclick="checkEx('ex6','mc')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex6','mc')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex6','mc')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
     </div>
@@ -891,6 +897,7 @@
         </div>
         <div class="mt-4 flex gap-3 flex-wrap">
             <button onclick="checkEx('ex7','input')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex7','input')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex7','input')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
     </div>
@@ -969,6 +976,7 @@
         </div>
         <div class="mt-4 flex gap-3 flex-wrap">
             <button onclick="checkEx('ex8','input')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex8','input')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex8','input')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
     </div>
@@ -1026,6 +1034,7 @@
         </div>
         <div class="mt-4 flex gap-3 flex-wrap">
             <button onclick="checkEx('ex9','input')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex9','input')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex9','input')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
     </div>
@@ -1113,6 +1122,7 @@
         </div>
         <div class="mt-4 flex gap-3 flex-wrap">
             <button onclick="checkEx('ex10','input')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex10','input')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex10','input')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
     </div>
@@ -1192,6 +1202,7 @@
         </div>
         <div class="mt-4 flex gap-3 flex-wrap">
             <button onclick="checkEx('ex11','input')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex11','input')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex11','input')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
     </div>
@@ -1261,7 +1272,433 @@
         </div>
         <div class="mt-4 flex gap-3 flex-wrap">
             <button onclick="checkEx('ex12','input')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex12','input')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
             <button onclick="resetEx('ex12','input')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
+        </div>
+    </div>
+
+
+    <!-- EX 13: Reported → Direct -->
+    <div class="ex-card" id="ex13">
+        <div class="flex items-center gap-3 mb-3">
+            <div class="ex-num">13</div>
+            <div class="ex-title">Back to Direct Speech</div>
+        </div>
+        <p class="ex-hint">Volgi le frasi in <strong>Direct speech</strong>. Attenzione a pronomi, tempi e espressioni di tempo.</p>
+        <div class="space-y-4">
+            <div class="ex-item">
+                <p class="ex-stem">1. My friends said they would meet us at the station.</p>
+                <div class="flex flex-wrap items-center gap-1 text-sm">
+                    <span>→ '</span><input type="text" class="ex-input" style="width:360px" data-answer="we will meet you at the station|we'll meet you at the station" placeholder="?"><span>'</span>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">2. Helen said she never drove to work.</p>
+                <div class="flex flex-wrap items-center gap-1 text-sm">
+                    <span>→ '</span><input type="text" class="ex-input" style="width:360px" data-answer="i never drive to work" placeholder="?"><span>'</span>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">3. Naomi said she had had lunch with her mum the day before.</p>
+                <div class="flex flex-wrap items-center gap-1 text-sm">
+                    <span>→ '</span><input type="text" class="ex-input" style="width:360px" data-answer="i had lunch with my mum yesterday" placeholder="?"><span>'</span>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">4. Matt said he would leave for Cardiff the next day.</p>
+                <div class="flex flex-wrap items-center gap-1 text-sm">
+                    <span>→ '</span><input type="text" class="ex-input" style="width:360px" data-answer="i will leave for cardiff tomorrow|i'll leave for cardiff tomorrow" placeholder="?"><span>'</span>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">5. Jason and Sue said they were playing computer games then.</p>
+                <div class="flex flex-wrap items-center gap-1 text-sm">
+                    <span>→ '</span><input type="text" class="ex-input" style="width:360px" data-answer="we are playing computer games now|we're playing computer games now|we are playing computer games" placeholder="?"><span>'</span>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">6. The teacher said I hadn't passed my exam.</p>
+                <div class="flex flex-wrap items-center gap-1 text-sm">
+                    <span>→ '</span><input type="text" class="ex-input" style="width:360px" data-answer="you haven't passed your exam|you did not pass your exam|you didn't pass your exam" placeholder="?"><span>'</span>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">7. Jessica said she had gone shopping the previous weekend.</p>
+                <div class="flex flex-wrap items-center gap-1 text-sm">
+                    <span>→ '</span><input type="text" class="ex-input" style="width:360px" data-answer="i went shopping last weekend" placeholder="?"><span>'</span>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">8. Tracy said that she would ring me later.</p>
+                <div class="flex flex-wrap items-center gap-1 text-sm">
+                    <span>→ '</span><input type="text" class="ex-input" style="width:360px" data-answer="i will ring you later|i'll ring you later" placeholder="?"><span>'</span>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">9. Irene said she wasn't feeling very well.</p>
+                <div class="flex flex-wrap items-center gap-1 text-sm">
+                    <span>→ '</span><input type="text" class="ex-input" style="width:360px" data-answer="i am not feeling very well|i'm not feeling very well" placeholder="?"><span>'</span>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">10. The robber told the customers to put their hands up.</p>
+                <div class="flex flex-wrap items-center gap-1 text-sm">
+                    <span>→ '</span><input type="text" class="ex-input" style="width:360px" data-answer="put your hands up" placeholder="?"><span>'</span>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4 flex gap-3 flex-wrap">
+            <button onclick="checkEx('ex13','input')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex13','input')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
+            <button onclick="resetEx('ex13','input')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
+        </div>
+    </div>
+
+    <!-- EX 14: Songs -->
+    <div class="ex-card" id="ex14">
+        <div class="flex items-center gap-3 mb-3">
+            <div class="ex-num">14</div>
+            <div class="ex-title">Reported Speech through Songs 🎵</div>
+        </div>
+        <p class="ex-hint">Ogni frase riporta il testo di una canzone famosa. Riconosci il brano: torna al <strong>direct speech</strong> nella tua testa e scegli il titolo giusto.</p>
+        <div class="space-y-4">
+            <div class="ex-item">
+                <p class="ex-stem">1. He said he wanted to break free.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="I want to break free — Queen" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">2. He told us to imagine there was no heaven; he said that it was easy if we tried.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="Imagine — John Lennon" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">3. She said they had tried to make her go to rehab and she had repeated no, no, no.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="Rehab — Amy Winehouse" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">4. She said every night in her dreams, she saw him, she felt him.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="My Heart Will Go On — Céline Dion" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">5. He told us that in the town where he had been born had lived a man who had sailed to sea.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="Yellow Submarine — The Beatles" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">6. She admitted that at first she had been afraid, and added that she had been petrified.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="I Will Survive — Gloria Gaynor" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">7. She said that she would tell us what she wanted, what she really really wanted.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="Wannabe — Spice Girls" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">8. He told us to get up, to stand up, to stand up for our rights.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="Get Up, Stand Up — Bob Marley" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">9. She said she had been cheated by him since she didn&#39;t know when.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="Mamma Mia — ABBA" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">10. She said that if she had been a boy, even just for a day, she would have rolled out of bed in the morning.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="If I Were a Boy — Beyoncé" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">11. He said he used to rule the world.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="Viva la Vida — Coldplay" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">12. They said they didn&#39;t need no education and they didn&#39;t need thought control.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="Another Brick in the Wall — Pink Floyd" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">13. She told us not to stop the music.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="Please Don&#39;t Stop the Music — Rihanna" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+            <div class="ex-item">
+                <p class="ex-stem">14. He said that the previous day all his troubles had seemed so far away.</p>
+                <div class="flex flex-wrap items-center gap-2 text-sm">
+                    <select class="ex-select" data-answer="Yesterday — The Beatles" style="max-width:100%">
+                        <option value="">— scegli la canzone —</option>
+                        <option value="Another Brick in the Wall — Pink Floyd">Another Brick in the Wall — Pink Floyd</option>
+                        <option value="Get Up, Stand Up — Bob Marley">Get Up, Stand Up — Bob Marley</option>
+                        <option value="I Will Survive — Gloria Gaynor">I Will Survive — Gloria Gaynor</option>
+                        <option value="I want to break free — Queen">I want to break free — Queen</option>
+                        <option value="If I Were a Boy — Beyoncé">If I Were a Boy — Beyoncé</option>
+                        <option value="Imagine — John Lennon">Imagine — John Lennon</option>
+                        <option value="Mamma Mia — ABBA">Mamma Mia — ABBA</option>
+                        <option value="My Heart Will Go On — Céline Dion">My Heart Will Go On — Céline Dion</option>
+                        <option value="Please Don&#39;t Stop the Music — Rihanna">Please Don&#39;t Stop the Music — Rihanna</option>
+                        <option value="Rehab — Amy Winehouse">Rehab — Amy Winehouse</option>
+                        <option value="Viva la Vida — Coldplay">Viva la Vida — Coldplay</option>
+                        <option value="Wannabe — Spice Girls">Wannabe — Spice Girls</option>
+                        <option value="Yellow Submarine — The Beatles">Yellow Submarine — The Beatles</option>
+                        <option value="Yesterday — The Beatles">Yesterday — The Beatles</option>
+                    </select>
+                    <div class="feedback-msg w-full"></div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4 flex gap-3 flex-wrap">
+            <button onclick="checkEx('ex14','select')" class="btn-check"><i data-lucide="check-circle" class="w-4 h-4"></i> Check</button>
+            <button onclick="showSol('ex14','select')" class="btn-sol"><i data-lucide="key-round" class="w-4 h-4"></i> Soluzioni</button>
+            <button onclick="resetEx('ex14','select')" class="btn-reset"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
     </div>
 
@@ -1273,6 +1710,9 @@
         </div>
         <button onclick="checkAll()" class="inline-flex items-center gap-2 bg-mendel-400 hover:bg-mendel-300 text-mendel-900 font-bold px-6 py-3 rounded-xl transition text-sm shrink-0">
             <i data-lucide="award" class="w-5 h-5"></i> Check All &amp; Final Score
+        </button>
+        <button onclick="showAllSol()" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3 rounded-xl transition text-sm shrink-0 border border-white/25">
+            <i data-lucide="key-round" class="w-5 h-5"></i> Mostra tutte le soluzioni
         </button>
     </div>
 
@@ -1292,7 +1732,7 @@
                 </a>
             </div>
             <div class="text-xs text-white/60 md:text-right">
-                Pagina creata dal Team Digitale<br>per l'IIS Mendel di Villa Cortese (MI)
+                Pagina creata dal prof. Crespi<br>per l'IIS Mendel di Villa Cortese (MI)
             </div>
         </div>
     </div>
@@ -1305,6 +1745,8 @@
 .btn-check:hover { background:#1b5e20; }
 .btn-reset { display:inline-flex; align-items:center; gap:.4rem; background:#f1f5f9; color:#475569; font-weight:600; padding:.5rem 1.1rem; border-radius:.7rem; border:none; cursor:pointer; font-size:.85rem; transition:background .15s; }
 .btn-reset:hover { background:#e2e8f0; }
+.btn-sol { display:inline-flex; align-items:center; gap:.4rem; background:#fff7ed; color:#b45309; font-weight:600; padding:.5rem 1.1rem; border-radius:.7rem; border:1px solid #fed7aa; cursor:pointer; font-size:.85rem; transition:background .15s; }
+.btn-sol:hover { background:#ffedd5; }
 </style>
 
 <script>
@@ -1427,8 +1869,36 @@ document.querySelectorAll('.mc-group').forEach(grp => {
     });
 });
 
-function checkAll() {
-    [
+function showSol(id, type) {
+    const c = document.getElementById(id);
+    if (type === 'input') {
+        c.querySelectorAll('input.ex-input').forEach(i => {
+            i.value = i.dataset.answer.split('|')[0];
+            i.classList.remove('wrong'); i.classList.add('correct');
+        });
+    } else if (type === 'select') {
+        c.querySelectorAll('select.ex-select').forEach(s => {
+            s.value = s.dataset.answer;
+            s.classList.remove('wrong'); s.classList.add('correct');
+        });
+    } else if (type === 'mc') {
+        c.querySelectorAll('.mc-group').forEach(g => {
+            g.querySelectorAll('.mc-btn').forEach(b => {
+                b.classList.remove('selected','wrong','correct');
+                if (b.dataset.value === g.dataset.answer) { b.classList.add('selected','correct'); }
+            });
+        });
+    }
+    c.querySelectorAll('.feedback-msg').forEach(m => { m.className='feedback-msg ok'; m.textContent='Soluzione'; });
+    delete exerciseChecked[id];
+    updateScore();
+}
+
+function showAllSol() {
+    ALL_EX.forEach(({id,type}) => { if (document.getElementById(id)) showSol(id,type); });
+}
+
+const ALL_EX = [
         {id:'ex1',type:'select'},
         {id:'ex2',type:'input'},
         {id:'ex3',type:'input'},
@@ -1441,7 +1911,12 @@ function checkAll() {
         {id:'ex10',type:'input'},
         {id:'ex11',type:'input'},
         {id:'ex12',type:'input'},
-    ].forEach(({id,type}) => {
+        {id:'ex13',type:'input'},
+        {id:'ex14',type:'select'},
+];
+
+function checkAll() {
+    ALL_EX.forEach(({id,type}) => {
         const container = document.getElementById(id);
         if (container) {
             const res = checkAnswers(container, type);
